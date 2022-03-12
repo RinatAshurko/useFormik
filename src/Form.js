@@ -1,25 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from 'yup';
 
-const validate = values => {
-    const errors = {};
-
-    if(!values.name) {
-        errors.name = 'Обязательное поле!'
-    } else if (values.name.length < 2) {
-        errors.name = 'Минимум два символа для заполнения'
-    }
-
-    if(!values.email) {
-        errors.email = 'Обязательно поле!'
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-        errors.email= 'Введите корректный email'
-    }
-
-    return errors;
-}
-
-const customForm = () => {
+const CustomForm = () => {
     return (
         <Formik 
             initialValues = {{
@@ -49,18 +31,21 @@ const customForm = () => {
                     name="name"
                     type="text"
                 />
+                <ErrorMessage className="error" name="name" component='div'/>
                 <label htmlFor="email">Ваша почта</label>
                 <Field
                     id="email"
                     name="email"
                     type="email"
                 />
+                <ErrorMessage className="error" name="email" component='div'/>
                 <label htmlFor="amount">Количество</label>
                 <Field
                     id="amount"
                     name="amount"
                     type="number"
                 />
+                <ErrorMessage className="error" name="amount" component='div'/>
                 <label htmlFor="currency">Валюта</label>
                 <Field
                     id="currency"
@@ -90,4 +75,4 @@ const customForm = () => {
         </Formik>
     )
 }
-export default customForm;
+export default CustomForm;
